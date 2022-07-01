@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="d-flex justify-content-center mt-5  mx-auto">
+        <div>
+            <input type="text" [(ngModel)]="todo" />
+            <button class="btn btn-success m-2 w-10 " (click)="addTodos(todo)">Ekle</button>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"><input type="checkbox" [(ngModel)]="done" (change)="allDoneTodo(done)" /></th>
+                        <th scope="col">Task</th>
+                        <th scope="col">Durum</th>
+                        <th scope="col">İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let item of todos">
+                        <th scope="row"><input type="checkbox" [checked]="item.done" (change)="doneTodo(item.id)" />
+                        </th>
+                        <td>{{item.todo}}</td>
+                        <td><span class="badge badge-pill bg-success" *ngIf="item.done">Tamamlandı</span>
+                            <span class="badge badge-pill bg-warning" *ngIf="!item.done">Bekleniliyor</span>
+                        </td>
+                        <td><button class="btn btn-sm btn-danger" (click)="delTodo(item.id)">Sil</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
